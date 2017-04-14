@@ -1,0 +1,19 @@
+propel:
+  database:
+      connections:
+          namedrop:
+              adapter: mysql
+              classname: Propel\Runtime\Connection\ConnectionWrapper
+              dsn: "mysql:host=localhost;dbname=namedrop"
+              user: app
+              password: {{ webpassword }} 
+              attributes:
+  runtime:
+      defaultConnection: namedrop
+      connections:
+          - namedrop
+  generator:
+      defaultConnection: namedrop
+      connections:
+          - namedrop
+
