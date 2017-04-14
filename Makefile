@@ -1,2 +1,4 @@
 install:
-	echo Copy files to ~/slim/...
+	cp ./*.xml ../namedrop/
+	cp ./*.yml ../namedrop/
+	cp ./*.json ../namedrop/
