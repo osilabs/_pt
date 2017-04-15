@@ -35,8 +35,11 @@
 <?php endif; ?>
 
 <?php foreach ($people as $person): ?>
-    <li><?php $person->getName() ?></li>
-    <pre><?php print_r($person) ?></pre>
+    <li><?php $person->getName() ?>
+    <li><?php $person->getId() ?></li>
+    <li><?php $name ?></li>
+     <pre><?php print_r($person) ?></pre>
+    </li>
 <?php endforeach; ?>
 
 <p>Looking for more? <a href="https://therapists.psychologytoday.com">Find a Therapist</a>
