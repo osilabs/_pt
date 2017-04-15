@@ -32,6 +32,8 @@ $app->get('/namedrop/[{name}]', function ($request, $response, $args) {
     $response->getBody()->write("TEST OUTS");
 
     $people = PeopleQuery::create()->find();
+    $response->getBody()->write(print_r($people));
+
     foreach($person as $people) {
         $response->getBody()->write("> Hello, " . $person->getName());
     }
