@@ -9,7 +9,7 @@ $app->get('/[{name}]', function ($request, $response, $args) {
     return $this->renderer->render($response, 'index.phtml', $args);
 });
 
-$app->get('/new/{name}', function ($request, $response, $args) {
+$app->post('/new/{name}', function ($request, $response, $args) {
     $this->logger->info("namedrop '/new' route");
 
     $name = $request->getAttribute('name');
@@ -20,16 +20,18 @@ $app->get('/new/{name}', function ($request, $response, $args) {
     return $response->withStatus(302)->withHeader('Location', '/namedrop/');
 });
 
-$new_path = $app->router->pathFor('new');
+$app->delete('/delete/{id}', function ($request, $response, $args) {
+    $id = $request->getAttribute('id');
+    $response->getBody()->write("DELETE: $id");
+
+    return $response->withStatus(302)->withHeader('Location', '/namedrop/');
+});
 
 $app->get('/namedrop/', function ($request, $response, $args) {
     $people = PeopleQuery::create()->find();
-//    $new_url = $router->pathFor('new');
 
     $args = [
         'people' => $people
-        //,
-        //'new_route' => $new_url
     ];
 
     return $this->renderer->render($response, 'namedrop.phtml', $args);
