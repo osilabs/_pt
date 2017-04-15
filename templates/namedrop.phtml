@@ -37,7 +37,8 @@
 <?php
 foreach ($people as $person):
     $name = $person->getName();
-    echo "<li>$name</li>";
+    $id   = $person->getId();
+    echo "<li><a methods='delete' href='/delete/$id'>x</a> $name</li>";
 endforeach;
 ?>
 

@@ -11,32 +11,25 @@ $app->get('/[{name}]', function ($request, $response, $args) {
 
 $app->post('/new/', function ($request, $response, $args) {
     $this->logger->info("namedrop '/new' route");
-//    $name = $request->getAttribute('name');
-//    $x = $request->post("name");
-
-
 
     $allPostPutVars = $request->getParsedBody();
     $name = $allPostPutVars['name'];
-
-
-
-//    $response->getBody()->write(var_dump($args));
- //   $response->getBody()->write(var_dump($request));
-    $response->getBody()->write("Hi '$name'");
-//    $response->getBody()->write("Hi '$x'");
 
     $p = new People();
     $p->setName($name);
     $p->save();
 
+//    $response->getBody()->write("Hi '$name'");
 //    return $this->renderer->render($response, 'index.phtml', $args);
+
     return $response->withStatus(302)->withHeader('Location', '/namedrop/');
 });
 
 $app->delete('/delete/{id}', function ($request, $response, $args) {
     $id = $request->getAttribute('id');
-    $response->getBody()->write("DELETE: $id");
+
+    $person = People::create()->findOneById($id);
+    $person->delete();
 
     return $response->withStatus(302)->withHeader('Location', '/namedrop/');
 });
