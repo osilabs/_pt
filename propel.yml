@@ -6,7 +6,7 @@ propel:
               classname: Propel\Runtime\Connection\ConnectionWrapper
               dsn: "mysql:host=localhost;dbname=namedrop"
               user: app
-              password: {{ webpassword }} 
+              password: {{ webpassword }}
               attributes:
   runtime:
       defaultConnection: namedrop
@@ -16,4 +16,3 @@ propel:
       defaultConnection: namedrop
       connections:
           - namedrop
-
