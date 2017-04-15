@@ -9,7 +9,7 @@ $app->get('/[{name}]', function ($request, $response, $args) {
     return $this->renderer->render($response, 'index.phtml', $args);
 });
 
-$app->post('/new/{name}', function ($request, $response, $args) {
+$app->post('/new/', function ($request, $response, $args) {
     $this->logger->info("namedrop '/new' route");
 
     $name = $request->getAttribute('name');
