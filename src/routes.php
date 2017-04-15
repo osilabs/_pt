@@ -24,15 +24,11 @@ $app->get('/new/{name}', function ($request, $response, $args) {
 #    return $this->renderer->render($response, 'namedrop.phtml', $args);
 });
 
-$app->get('/namedrop/[{name}]', function ($request, $response, $args) {
+$app->get('/namedrop/', function ($request, $response, $args) {
     $this->logger->info("namedrop '/namedrop' route");
 
-    $name = $request->getAttribute('name');
-
-    $response->getBody()->write("TEST OUTS");
-
     $people = PeopleQuery::create()->find();
-    $response->getBody()->write(print_r($people));
+    #$response->getBody()->write(print_r($people));
 
     foreach($people as $person) {
         $response->getBody()->write("> Hello, " . $person->getName());
