@@ -23,11 +23,11 @@ $app->get('/new/{name}', function ($request, $response, $args) {
 
 $app->get('/namedrop/', function ($request, $response, $args) {
     $people = PeopleQuery::create()->find();
-    foreach($people as $person) {
-        $response->getBody()->write("> Hello, " . $person->getName());
-    }
 
-    $args = ['people' => $people];
+    $args = [
+        'people' => $people,
+        'del_route' => $app->urlFor('new', array('name' => 'Dynamimi'))
+    ];
 
     return $this->renderer->render($response, 'namedrop.phtml', $args);
 });
