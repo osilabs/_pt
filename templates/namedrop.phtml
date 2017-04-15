@@ -34,8 +34,11 @@
 <h2>Welcome <?= htmlspecialchars($name); ?>!</h2>
 <?php endif; ?>
 
-<?php foreach ($people as $person): $name = $person->getName(); ?>
-     <li><?php $name ?></li>
+<?php foreach ($people as $person): ?>
+    <?php
+         $name = $person->getName();
+         echo "<li>$name</li>";
+    ?>
 <?php endforeach; ?>
 
 <h2>Drop a Name:</h2>
