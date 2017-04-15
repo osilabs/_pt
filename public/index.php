@@ -1,4 +1,8 @@
 <?php
+
+use \Psr\Http\Message\ServerRequestInterface as Request;
+use \Psr\Http\Message\ResponseInterface as Response;
+
 if (PHP_SAPI == 'cli-server') {
     // To help the built-in PHP dev server, check if the request was actually for
     // something which should probably be served as a static file
@@ -26,15 +30,12 @@ require __DIR__ . '/../src/middleware.php';
 // Register routes
 require __DIR__ . '/../src/routes.php';
 
-use \Psr\Http\Message\ServerRequestInterface as Request;
-use \Psr\Http\Message\ResponseInterface as Response;
-
-$app->get('/namedrop2/{name}', function (Request $request, Response $response) {
-    $name = $request->getAttribute('name');
-    $response->getBody()->write("> Hello, $name");
-
-    return $response;
-});
+//$app->get('/namedrop2/{name}', function (Request $request, Response $response) {
+//    $name = $request->getAttribute('name');
+//    $response->getBody()->write("> Hello, $name");
+//
+//    return $response;
+//});
 
 // Run app
 $app->run();
