@@ -26,7 +26,7 @@ $app->get('/namedrop/', function ($request, $response, $args) {
     foreach($people as $person) {
         $response->getBody()->write("> Hello, " . $person->getName());
     }
-ß
+
     $args = ['people' => $people];
 
     return $this->renderer->render($response, 'namedrop.phtml', $args);
