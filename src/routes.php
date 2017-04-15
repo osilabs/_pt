@@ -11,13 +11,20 @@ $app->get('/[{name}]', function ($request, $response, $args) {
 
 $app->post('/new/', function ($request, $response, $args) {
     $this->logger->info("namedrop '/new' route");
-    $name = $request->getAttribute('name');
-    $x = $request->post("name");
+//    $name = $request->getAttribute('name');
+//    $x = $request->post("name");
 
-    $response->getBody()->write(var_dump($args));
-#    $response->getBody()->write(var_dump($request));
+
+
+    $allPostPutVars = $request->getParsedBody();
+    $name = $allPostPutVars['name'];
+
+
+
+//    $response->getBody()->write(var_dump($args));
+    $response->getBody()->write(var_dump($request));
     $response->getBody()->write("Hi '$name'");
-    $response->getBody()->write("Hi '$x'");
+//    $response->getBody()->write("Hi '$x'");
 
 //    $p = new People();
 //    $p->setName($name);
