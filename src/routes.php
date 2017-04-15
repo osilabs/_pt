@@ -25,7 +25,7 @@ $app->post('/new/', function ($request, $response, $args) {
     return $response->withStatus(302)->withHeader('Location', '/namedrop/');
 });
 
-$app->delete('/delete/{id}', function ($request, $response, $args) {
+$app->get('/delete/{id}', function ($request, $response, $args) {
     $id = $request->getAttribute('id');
 
     $person = People::create()->findOneById($id);
