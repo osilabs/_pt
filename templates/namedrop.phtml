@@ -35,7 +35,7 @@
 <?php endif; ?>
 
 <?php foreach ($people as $person): ?>
-    <li><?php $person->getName() ?>
+    <li><?php $n = $person->getName(); echo $n; ?>
     <li><?php $person->getSpleen() ?></li>
     <li><?php $name ?></li>
      <pre><?php var_dump($person) ?></pre>
