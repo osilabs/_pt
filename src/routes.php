@@ -11,13 +11,14 @@ $app->get('/[{name}]', function ($request, $response, $args) {
 
 $app->post('/new/', function ($request, $response, $args) {
     $this->logger->info("namedrop '/new' route");
+    $name = $request->getAttribute('name');
 
     $response->getBody()->write(var_dump($request));
+    $response->getBody()->write("Hi '$name'");
 
-    $name = $request->getAttribute('name');
-    $p = new People();
-    $p->setName($name);
-    $p->save();
+//    $p = new People();
+//    $p->setName($name);
+//    $p->save();
 
     return $this->renderer->render($response, 'index.phtml', $args);
 //    return $response->withStatus(302)->withHeader('Location', '/namedrop/');
