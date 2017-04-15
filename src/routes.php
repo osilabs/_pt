@@ -14,9 +14,9 @@ $app->get('/namedrop/[{name}]', function ($request, $response, $args) {
 
     $name = $request->getAttribute('name');
 
-    $author = new People();
-    $author->setName($name);
-    $author->save();
+#    $author = new People();
+#    $author->setName($name);
+#    $author->save();
 
     return $this->renderer->render($response, 'namedrop.phtml', $args);
 });
