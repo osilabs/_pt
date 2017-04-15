@@ -29,10 +29,10 @@ require __DIR__ . '/../src/routes.php';
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
-$app->get('/namedrop/{name}', function (Request $request, Response $response) {
+$app->get('/namedrop2/{name}', function (Request $request, Response $response) {
     $name = $request->getAttribute('name');
     $response->getBody()->write("> Hello, $name");
-    
+
     return $response;
 });
 
