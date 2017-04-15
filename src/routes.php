@@ -20,14 +20,16 @@ $app->get('/new/{name}', function ($request, $response, $args) {
     return $response->withStatus(302)->withHeader('Location', '/namedrop/');
 });
 
-$router = $app->router;
-$app->get('/namedrop/', function ($request, $response, $args) use ($router) {
+$new_path = $app->router->pathFor('new');
+
+$app->get('/namedrop/', function ($request, $response, $args) {
     $people = PeopleQuery::create()->find();
-    $new_url = $router->pathFor('new');
+//    $new_url = $router->pathFor('new');
 
     $args = [
-        'people' => $people,
-        'new_route' => $new_url
+        'people' => $people
+        //,
+        //'new_route' => $new_url
     ];
 
     return $this->renderer->render($response, 'namedrop.phtml', $args);
