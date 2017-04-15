@@ -24,3 +24,5 @@ dbconn:
 
 pull:
 	git remote update; git pull --rebase
+
+full: pull install start
