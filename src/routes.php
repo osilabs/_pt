@@ -12,6 +12,8 @@ $app->get('/[{name}]', function ($request, $response, $args) {
 $app->get('/namedrop/[{name}]', function ($request, $response, $args) {
     $this->logger->info("namedrop '/namedrop' route");
 
+    $name = $request->getAttribute('name');
+
     $author = new People();
     $author->setName($name);
     $author->save();
