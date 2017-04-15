@@ -12,12 +12,15 @@ $app->get('/[{name}]', function ($request, $response, $args) {
 $app->post('/new/', function ($request, $response, $args) {
     $this->logger->info("namedrop '/new' route");
 
+    $response->getBody()->write(var_dump($request));
+
     $name = $request->getAttribute('name');
     $p = new People();
     $p->setName($name);
     $p->save();
 
-    return $response->withStatus(302)->withHeader('Location', '/namedrop/');
+    return $this->renderer->render($response, 'index.phtml', $args);
+//    return $response->withStatus(302)->withHeader('Location', '/namedrop/');
 });
 
 $app->delete('/delete/{id}', function ($request, $response, $args) {
