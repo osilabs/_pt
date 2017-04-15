@@ -22,16 +22,16 @@ $app->post('/new/', function ($request, $response, $args) {
 
 
 //    $response->getBody()->write(var_dump($args));
-    $response->getBody()->write(var_dump($request));
+ //   $response->getBody()->write(var_dump($request));
     $response->getBody()->write("Hi '$name'");
 //    $response->getBody()->write("Hi '$x'");
 
-//    $p = new People();
-//    $p->setName($name);
-//    $p->save();
+    $p = new People();
+    $p->setName($name);
+    $p->save();
 
-    return $this->renderer->render($response, 'index.phtml', $args);
-//    return $response->withStatus(302)->withHeader('Location', '/namedrop/');
+//    return $this->renderer->render($response, 'index.phtml', $args);
+    return $response->withStatus(302)->withHeader('Location', '/namedrop/');
 });
 
 $app->delete('/delete/{id}', function ($request, $response, $args) {
