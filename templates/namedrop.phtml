@@ -34,12 +34,13 @@
 <h2>Welcome <?= htmlspecialchars($name); ?>!</h2>
 <?php endif; ?>
 
-<?php foreach ($people as $person): ?>
-    <li><?php $n = $person->getName(); echo $n; ?>
+<?php foreach ($people as $person): $name = $person->getName(); ?>
      <li><?php $name ?></li>
-     <pre><?php var_dump($person) ?></pre>
-    </li>
 <?php endforeach; ?>
+
+<h2>Drop a Name:</h2>
+
+<form name="fnew"><input name="name" size="22"></form>
 
 <p>Looking for more? <a href="https://therapists.psychologytoday.com">Find a Therapist</a>
 
