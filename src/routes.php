@@ -12,14 +12,14 @@ $app->get('/[{name}]', function ($request, $response, $args) {
 $app->get('/new/{name}', function ($request, $response, $args) {
     $this->logger->info("namedrop '/new' route");
 
-    $name = $request->getAttribute('name');
-    $response->getBody()->write("> Hello, $name");
+//    $name = $request->getAttribute('name');
+//    $response->getBody()->write("> Hello, $name");
 
     $p = new People();
     $p->setName($name);
     $p->save();
 
-    return $response->withStatus(302)->withHeader('Location', 'namedrop');
+    return $response->withStatus(302)->withHeader('Location', '/namedrop/');
 
 #    return $this->renderer->render($response, 'namedrop.phtml', $args);
 });
@@ -29,9 +29,11 @@ $app->get('/namedrop/[{name}]', function ($request, $response, $args) {
 
     $name = $request->getAttribute('name');
 
+    $response->getBody()->write("TEST OUTS");
+
     $people = PeopleQuery::create()->find();
     foreach($person as $people) {
-        $response->getBody()->write("> Hello, " . $person->getFirstName());
+        $response->getBody()->write("> Hello, " . $person->getName());
     }
 
     return $this->renderer->render($response, 'namedrop.phtml', $args);
