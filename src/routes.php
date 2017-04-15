@@ -13,7 +13,8 @@ $app->post('/new/', function ($request, $response, $args) {
     $this->logger->info("namedrop '/new' route");
     $name = $request->getAttribute('name');
 
-    $response->getBody()->write(var_dump($request));
+    $response->getBody()->write(var_dump($args));
+#    $response->getBody()->write(var_dump($request));
     $response->getBody()->write("Hi '$name'");
 
 //    $p = new People();
