@@ -31,9 +31,13 @@
 <div>a study in CRUD, Git, unit testing, and separation of service</div>
 
 <?php if (isset($name)) : ?>
-    <h2>Hello <?= htmlspecialchars($name); ?>!</h2>
-<?php else: ?>
+<h2>Welcome <?= htmlspecialchars($name); ?>!</h2>
+<?php endif; ?>
+
+<?php foreach ($people as $person): ?>
+    <li><?php $person->getName() ?></li>
+<?php endforeach; ?>
+
 <p>Looking for more? <a href="https://therapists.psychologytoday.com">Find a Therapist</a>
-    <?php endif; ?>
 </body>
 </html>

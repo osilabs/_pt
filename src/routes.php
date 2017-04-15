@@ -28,8 +28,6 @@ $app->get('/namedrop/', function ($request, $response, $args) {
     $this->logger->info("namedrop '/namedrop' route");
 
     $people = PeopleQuery::create()->find();
-    #$response->getBody()->write(print_r($people));
-
     foreach($people as $person) {
         $response->getBody()->write("> Hello, " . $person->getName());
     }
