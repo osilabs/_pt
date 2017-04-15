@@ -35,10 +35,10 @@
 <?php endif; ?>
 
 <?php foreach ($people as $person): ?>
-    <li><?php $person->getName() ?>
-    <li><?php $person->getId() ?></li>
+    <li><?php $person->getName(): ?>
+    <li><?php $person->getSpleen() ?></li>
     <li><?php $name ?></li>
-     <pre><?php print_r($person) ?></pre>
+     <pre><?php var_dump($person) ?></pre>
     </li>
 <?php endforeach; ?>
 
