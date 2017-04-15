@@ -20,13 +20,15 @@ $app->get('/new/{name}', function ($request, $response, $args) {
     return $response->withStatus(302)->withHeader('Location', '/namedrop/');
 });
 
+
 $app->get('/namedrop/', function ($request, $response, $args) {
     $people = PeopleQuery::create()->find();
     foreach($people as $person) {
         $response->getBody()->write("> Hello, " . $person->getName());
     }
 
+    $response->getBody()->write("args:");
     $response->getBody()->write(print_r($args));
 
-    return $this->renderer->render($response, 'namedrop.phtml', $args);
+    return $this->renderer->render($response, 'namedrop.phtml', array($people));
 });
