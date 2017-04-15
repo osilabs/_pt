@@ -19,7 +19,7 @@ $app->get('/new/{name}', function ($request, $response, $args) {
     $p->setName($name);
     $p->save();
 
-    return $response->withStatus(302)->withHeader('Location', 'namedrop');
+    return $response->withStatus(302)->withHeader('Location', '/namedrop/');
 
 #    return $this->renderer->render($response, 'namedrop.phtml', $args);
 });
