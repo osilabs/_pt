@@ -20,6 +20,7 @@ $app->get('/new/{name}', function ($request, $response, $args) {
     return $response->withStatus(302)->withHeader('Location', '/namedrop/');
 });
 
+
 $app->get('/namedrop/', function ($request, $response, $args) {
     $people = PeopleQuery::create()->find();
     foreach($people as $person) {
