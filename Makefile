@@ -20,3 +20,7 @@ start:
 
 dbconn:
 	mysql -u app -h localhost -p namedrop
+
+pull:
+	git remote update; git pull --rebase
+	install
