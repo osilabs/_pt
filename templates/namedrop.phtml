@@ -34,6 +34,7 @@
 <h2>Welcome <?= htmlspecialchars($name); ?>!</h2>
 <?php endif; ?>
 
+<div align="center">
 <div align="left">
 <?php
 foreach ($people as $person):
@@ -43,7 +44,7 @@ foreach ($people as $person):
 endforeach;ß
 ?>
 </div>
-
+</div>
 
 <form method="POST" action="/new/">
     <h2>Drop a Name:</h2>
