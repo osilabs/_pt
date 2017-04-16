@@ -34,14 +34,15 @@
 <h2>Welcome <?= htmlspecialchars($name); ?>!</h2>
 <?php endif; ?>
 
+<div align="left">
 <?php
 foreach ($people as $person):
     $name = $person->getName();
     $id   = $person->getId();
-    echo "<li><a href='/delete/$id'>x</a> $name</li>";
-endforeach;
+    echo "<div><a href='/delete/$id'>x</a> $name</div>";
+endforeach;ß
 ?>
-
+</div>
 
 
 <form method="POST" action="/new/">
