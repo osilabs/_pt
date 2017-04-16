@@ -6,6 +6,7 @@ install:
 	cp ./*.xml ${INSTALL_BASE}/
 	cp ./*.yml ${INSTALL_BASE}/
 	cp ./*.json ${INSTALL_BASE}/
+	cp ./*.php ${INSTALL_BASE}/
 	cp ./public/* ${INSTALL_BASE}/public/
 	cp ./src/* ${INSTALL_BASE}/src/
 	cp ./templates/* ${INSTALL_BASE}/templates/
