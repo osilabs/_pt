@@ -4,6 +4,20 @@ namespace Tests\Functional;
 
 class HomepageTest extends BaseTestCase
 {
+
+    // ------------------------------------------------------------------------
+
+    public function testCreateName()
+    {
+        $response = $this->runApp('post', '/new/');
+
+        $this->assertEquals(200, $response->getStatusCode());
+//        $this->assertContains('SlimFramework', (string)$response->getBody());
+//        $this->assertNotContains('Hello', (string)$response->getBody());
+    }
+
+    // ------------------------------------------------------------------------
+
     /**
      * Test that the index route returns a rendered response containing the text 'SlimFramework' but not a greeting
      */

@@ -38,16 +38,16 @@
 <p></p>
 
 <div align="center">
-<div align="left" style="width: 34%;">
-<?php
-foreach ($people as $person):
-    $name = prerender($person->getName());
-    $id   = $person->getId();
-    $del = delButton("/delete/$id", "Delete");
-    echo "<div>$del $name</div>";
-endforeach;
-?>
-</div>
+    <div align="left" style="width: 34%;">
+        <?php
+        foreach ($people as $person):
+            $name = prerender($person->getName());
+            $id   = $person->getId();
+            $del = delButton("/delete/$id", "Delete");
+            echo "<div>$del $name</div>";
+        endforeach;
+        ?>
+    </div>
 </div>
 
 <form method="POST" action="/new/">
