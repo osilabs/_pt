@@ -9,7 +9,7 @@ class HomepageTest extends BaseTestCase
 
     public function testCreateName()
     {
-        $response = $this->runApp('post', '/new/0');
+        $response = $this->runApp('post', '/new?name=foo');
 
         $this->assertEquals(302, $response->getStatusCode());
 //        $this->assertContains('SlimFramework', (string)$response->getBody());
