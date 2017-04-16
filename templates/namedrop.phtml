@@ -23,6 +23,12 @@
             font-weight: 200;
             margin-bottom: 0;
         }
+
+        #message {
+            border: solid cornflowerblue 2px;
+            color: cornflowerblue;
+            background-color: honeydew;
+        }
     </style>
 </head>
 <body>
@@ -31,7 +37,7 @@
 <div>A study in CRUD, Git, unit testing, and separation of service</div>
 
 <?php if (isset($message)) : ?>
-<h2>Welcome <?= htmlspecialchars($message); ?>!</h2>
+<h3 id="message"><?= htmlspecialchars($message); ?>!</h3>
 <?php endif; ?>
 
 <p></p>
