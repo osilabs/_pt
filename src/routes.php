@@ -31,6 +31,11 @@ $app->post('/new/', function ($request, $response, $args) {
     $p->setName($name);
     $p->save();
 
+    $app = \Slim\Slim::getInstance();
+    //$app->flash('error', 'Login required');
+    $app->flash('Success', 'Name dropped');
+    //$app->redirect('/login');
+
     return $response->withStatus(302)->withHeader('Location', '/namedrop/');
 });
 
@@ -58,6 +63,9 @@ $app->get('/namedrop/', function ($request, $response, $args) {
     $people = PeopleQuery::create()
         ->addDescendingOrderByColumn('length(name)')
         ->find();
+
+    $messages = $this->flash->getMessages();
+    print_r($messages);
 
     $args = [
         'people' => $people
