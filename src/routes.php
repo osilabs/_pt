@@ -2,6 +2,21 @@
 // Routes
 
 
+
+
+
+// Fetch DI Container
+$container = $app->getContainer();
+
+// Register provider
+$container['flash'] = function () {
+    return new \Slim\Flash\Messages();
+};
+
+
+
+
+
 // TODO: make this a general entry point with a link to namedrop
 $app->get('/[{name}]', function ($request, $response, $args) {
     // Sample log message
@@ -24,6 +39,9 @@ $app->post('/new/', function ($request, $response, $args) {
     $p = new People();
     $p->setName($name);
     $p->save();
+
+    // Set flash message for next request
+    $this->flash->addMessage('Result', "Seems '$name' was added");
 
     return $response->withStatus(302)->withHeader('Location', '/namedrop/');
 });
@@ -52,6 +70,10 @@ $app->get('/namedrop/', function ($request, $response, $args) {
     $people = PeopleQuery::create()
         ->addDescendingOrderByColumn('length(name)')
         ->find();
+
+    // Get flash messages from previous request
+    $messages = $this->flash->getMessages();
+    print_r($messages);
 
     $args = [
         'people' => $people
