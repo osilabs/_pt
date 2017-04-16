@@ -16,6 +16,15 @@ class HomepageTest extends BaseTestCase
 //        $this->assertNotContains('Hello', (string)$response->getBody());
     }
 
+
+    public function testRead()
+    {
+        $response = $this->runApp('post', '/namedrop');
+
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertContains('Welcome', (string)$response->getBody());
+    }
+
     // ------------------------------------------------------------------------
 
     /**
