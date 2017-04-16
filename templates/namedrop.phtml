@@ -34,11 +34,11 @@
 <h2>Welcome <?= htmlspecialchars($name); ?>!</h2>
 <?php endif; ?>
 
-<div align="center" style="width: 34%;">
-<div align="left">
+<div align="center">
+<div align="left" style="width: 34%;">
 <?php
 foreach ($people as $person):
-    $name = $person->getName();
+    $name = prerender($person->getName());
     $id   = $person->getId();
     echo "<div><a href='/delete/$id'>x</a> $name</div>";
 endforeach;
