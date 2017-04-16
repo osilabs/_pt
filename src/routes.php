@@ -69,7 +69,6 @@ $app->get('/namedrop/[{message}]', function ($request, $response, $args) {
 
     $message = $request->getAttribute('message');
 
-    //$app = \Slim\Slim::getInstance();
     //$messages = $app->flash->getMessages();
     //print_r($messages);
 
