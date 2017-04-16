@@ -27,7 +27,9 @@ $app->post('/new/', function ($request, $response, $args) {
     $allPostPutVars = $request->getParsedBody();
     $name = $allPostPutVars['name'];
 
-    if ( $name == "Damien" ) {
+    if (!isset($name)) {
+        $message="Sorry, unable to help.";
+    } else if ( $name == "Damien" ) {
         $message="Nope, can not add Damien.";
     } else {
         $p = new People();
@@ -39,7 +41,7 @@ $app->post('/new/', function ($request, $response, $args) {
     //$app = \Slim\Slim::getInstance();
     //$app->flash('Success', 'Name dropped');
 
-    return $response->withStatus(302)->withHeader('Location', '/namedrop/$message');
+    return $response->withStatus(302)->withHeader('Location', '/namedrop/' . urlencode($message));
 });
 
 
