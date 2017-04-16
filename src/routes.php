@@ -36,7 +36,9 @@ $app->get('/delete/{id}', function ($request, $response, $args) {
 });
 
 $app->get('/namedrop/', function ($request, $response, $args) {
-    $people = PeopleQuery::create()->find();
+    $people = PeopleQuery::create()
+        ->addAscendingOrderByColumn('LENGTH(name)')
+        ->find();
 
     $args = [
         'people' => $people
