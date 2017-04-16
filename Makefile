@@ -28,4 +28,4 @@ start:
 	php -S 0.0.0.0:8080 -t ../namedrop/public ../namedrop/public/index.php
 
 test:
-    cd ../namedrop && ./vendor/bin/phpunit
+	cd ../namedrop && ./vendor/bin/phpunit
