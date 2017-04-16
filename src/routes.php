@@ -27,14 +27,19 @@ $app->post('/new/', function ($request, $response, $args) {
     $allPostPutVars = $request->getParsedBody();
     $name = $allPostPutVars['name'];
 
-    $p = new People();
-    $p->setName($name);
-    $p->save();
+    if ( $name == "Damien" ) {
+        $message="Nope, can not add Damien.";
+    } else {
+        $p = new People();
+        $p->setName($name);
+        $p->save();
+        $message="$name has been added";
+    }
 
     //$app = \Slim\Slim::getInstance();
     //$app->flash('Success', 'Name dropped');
 
-    return $response->withStatus(302)->withHeader('Location', '/namedrop/');
+    return $response->withStatus(302)->withHeader('Location', '/namedrop/$message');
 });
 
 
@@ -57,14 +62,14 @@ $app->get('/delete/{id}', function ($request, $response, $args) {
 
 
 
-$app->get('/namedrop/', function ($request, $response, $args) {
+$app->get('/namedrop/[{message}]', function ($request, $response, $args) {
     $people = PeopleQuery::create()
         ->addDescendingOrderByColumn('length(name)')
         ->find();
 
-    $app = \Slim\Slim::getInstance();
-    $messages = $app->flash->getMessages();
-    print_r($messages);
+    //$app = \Slim\Slim::getInstance();
+    //$messages = $app->flash->getMessages();
+    //print_r($messages);
 
     $args = [
         'people' => $people
