@@ -31,10 +31,8 @@ $app->post('/new/', function ($request, $response, $args) {
     $p->setName($name);
     $p->save();
 
-    $app = \Slim\Slim::getInstance();
-    //$app->flash('error', 'Login required');
-    $app->flash('Success', 'Name dropped');
-    //$app->redirect('/login');
+    //$app = \Slim\Slim::getInstance();
+    //$app->flash('Success', 'Name dropped');
 
     return $response->withStatus(302)->withHeader('Location', '/namedrop/');
 });
@@ -64,7 +62,8 @@ $app->get('/namedrop/', function ($request, $response, $args) {
         ->addDescendingOrderByColumn('length(name)')
         ->find();
 
-    $messages = $this->flash->getMessages();
+    $app = \Slim\Slim::getInstance();
+    $messages = $app->flash->getMessages();
     print_r($messages);
 
     $args = [
