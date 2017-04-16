@@ -43,7 +43,8 @@
 foreach ($people as $person):
     $name = prerender($person->getName());
     $id   = $person->getId();
-    echo "<div><a href='/delete/$id'>x</a> $name</div>";
+    $del = delButton("/delete/$id", "Delete");
+    echo "<div>$del $name</div>";
 endforeach;
 ?>
 </div>
