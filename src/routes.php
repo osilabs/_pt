@@ -67,12 +67,15 @@ $app->get('/namedrop/[{message}]', function ($request, $response, $args) {
         ->addDescendingOrderByColumn('length(name)')
         ->find();
 
+    $message = $request->getAttribute('message');
+
     //$app = \Slim\Slim::getInstance();
     //$messages = $app->flash->getMessages();
     //print_r($messages);
 
     $args = [
-        'people' => $people
+        'people' => $people,
+        'message' => $message
     ];
 
     return $this->renderer->render($response, 'namedrop.phtml', $args);
