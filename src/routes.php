@@ -1,6 +1,8 @@
 <?php
 // Routes
 
+
+// TODO: make this a general entry point with a link to namedrop
 $app->get('/[{name}]', function ($request, $response, $args) {
     // Sample log message
     $this->logger->info("Slim-Skeleton '/' route");
@@ -22,9 +24,6 @@ $app->post('/new/', function ($request, $response, $args) {
     $p = new People();
     $p->setName($name);
     $p->save();
-
-//    $response->getBody()->write("Hi '$name'");
-//    return $this->renderer->render($response, 'index.phtml', $args);
 
     return $response->withStatus(302)->withHeader('Location', '/namedrop/');
 });

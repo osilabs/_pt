@@ -2,6 +2,11 @@ INSTALL_BASE=../namedrop
 SECRET=.secret
 DBPassword=`cat $(SECRET)`
 
+dbconn:
+	mysql -u app -h localhost -p namedrop
+
+full: pull install start
+
 install:
 	cp ./*.xml ${INSTALL_BASE}/
 	cp ./*.yml ${INSTALL_BASE}/
@@ -16,13 +21,11 @@ install:
 	cd ${INSTALL_BASE} && ./vendor/bin/propel config:convert
 	cd ${INSTALL_BASE} && composer dump-autoload --optimize # do after build
 
-start:
-	php -S 0.0.0.0:8080 -t ../namedrop/public ../namedrop/public/index.php
-
-dbconn:
-	mysql -u app -h localhost -p namedrop
-
 pull:
 	git remote update; git pull --rebase
 
-full: pull install start
+start:
+	php -S 0.0.0.0:8080 -t ../namedrop/public ../namedrop/public/index.php
+
+test:
+    cd ../namedrop && ./vendor/bin/phpunit
