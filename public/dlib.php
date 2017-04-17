@@ -14,9 +14,14 @@ function delButton($link, $text) {
     return $button;
 }
 
-//function prerender($item) {
-//    return '<span style="color:#666"><em><strong>' . htmlentities($item) . '</strong></em></span>';
-//}
+/**
+ * Assist template with html encoding and format
+ * @param $item
+ * @return string
+ */
+function prerender($item) {
+    return '<span style="color:#666"><em><strong>' . htmlentities($item) . '</strong></em></span>';
+}
 
 /**
  * Validate name input
