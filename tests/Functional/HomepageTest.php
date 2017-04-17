@@ -2,8 +2,6 @@
 
 namespace Tests\Functional;
 
-// require __DIR__ . '/../../../namedrop/public/dlib.php';
-
 class HomepageTest extends BaseTestCase
 {
     public function testWrite()
