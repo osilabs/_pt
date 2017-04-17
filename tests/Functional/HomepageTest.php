@@ -4,12 +4,18 @@ namespace Tests\Functional;
 
 class HomepageTest extends BaseTestCase
 {
+    /**
+     * Test that new values are posted
+     */
     public function testWrite()
     {
         $response = $this->runApp('post', '/new/?name=foo');
         $this->assertEquals(302, $response->getStatusCode());
     }
 
+    /**
+     * Test read route displays expected value
+     */
     public function testRead()
     {
         $response = $this->runApp('get', '/namedrop/');
@@ -17,6 +23,9 @@ class HomepageTest extends BaseTestCase
         $this->assertContains('Welcome', (string)$response->getBody());
     }
 
+    /**
+     * Messages are displayed
+     */
     public function testWrote()
     {
         $response = $this->runApp('get', '/namedrop/jimjim/');
