@@ -33,8 +33,10 @@ $app->get('/namedrop/[{message}]', function ($request, $response, $args) {
 /**
  * Create new users
  */
-$app->post('/new/', $authenticateName($request, $response, $args), function ($request, $response, $args) {
+$app->post('/new/', function ($request, $response, $args) {
     $this->logger->info("namedrop '/new' route");
+
+    authenticateName($request, $response, $args);
 
     $allPostPutVars = $request->getParsedBody();
     $name = $allPostPutVars['name'];
