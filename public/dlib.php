@@ -1,12 +1,22 @@
 <?php
 
+/**
+ * Produce an HTML,Javascript,CSS based button to delete an entry
+ * @param $link
+ * @param $text
+ * @return string
+ */
 function delButton($link, $text) {
-    return "[<a href='$link' style='text-decoration:none;' title='$text'><span style='font-weight:bold;color:red;text-effect:none;'>&nbsp;X&nbsp;</span></a>]";
+    $button  = "[<a href='$link' style='text-decoration:none;' title='$text'>";
+    $button .= "<span style='font-weight:bold;color:red;text-effect:none;'>";
+    $button .= "&nbsp;X&nbsp;</span></a>]";
+
+    return $button;
 }
 
-function prerender($item) {
-    return '<span style="color:#666"><em><strong>' . htmlentities($item) . '</strong></em></span>';
-}
+//function prerender($item) {
+//    return '<span style="color:#666"><em><strong>' . htmlentities($item) . '</strong></em></span>';
+//}
 
 /**
  * Validate name input

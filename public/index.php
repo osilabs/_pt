@@ -32,12 +32,5 @@ require __DIR__ . '/../src/middleware.php';
 // Register routes
 require __DIR__ . '/../src/routes.php';
 
-//$app->get('/namedrop2/{name}', function (Request $request, Response $response) {
-//    $name = $request->getAttribute('name');
-//    $response->getBody()->write("> Hello, $name");
-//
-//    return $response;
-//});
-
 // Run app
 $app->run();
