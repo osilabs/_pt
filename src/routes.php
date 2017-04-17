@@ -41,18 +41,18 @@ $app->post('/new/', function ($request, $response, $args) {
 
     if ($message = (validateName($name))) {
         return $response->withStatus(302)->withHeader('Location', '/namedrop/' . urlencode($message));
-    }
-
-    if (!isset($name)) {
-        $message="Sorry, unable to help.";
     } else {
-        $p = new People();
-        $p->setName($name);
-        $p->save();
-        $message="$name has been added";
+        if (!isset($name)) {
+            $message = "Sorry, unable to help.";
+        } else {
+            // Save to db
+            $p = new People();
+            $p->setName($name);
+            $p->save();
+            $message = "$name has been added";
+        }
+        return $response->withStatus(302)->withHeader('Location', '/namedrop/' . urlencode($message));
     }
-
-    return $response->withStatus(302)->withHeader('Location', '/namedrop/' . urlencode($message));
 });
 
 /**

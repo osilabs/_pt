@@ -10,7 +10,7 @@ function prerender($item) {
 
 function validateName( $name ) {
     $message = "";
-    if (sizeof($name) <= 5) {
+    if (strlen($name) < 3) {
         $message = "Too short: '$name'";
     }
     return $message;
