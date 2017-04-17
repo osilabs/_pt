@@ -23,10 +23,25 @@ class HomepageTest extends BaseTestCase
 //        $this->assertContains('Welcome', (string)$response->getBody());
 //    }
 
-    public function testValidation()
+
+
+
+    public function nameValidateProvider()
     {
-        $message = validateName('Donkey Face meets chinchilla');
-        $this->assertContains('long', (string)$message);
+        return [
+            ["Damien", ["Success"]],
+            ["Vu", ["Short"]],
+        ];
+    }
+    /**
+     * @dataProvider nameValidateProvider
+     */
+    public function testValidation($name, $messageStrings)
+    {
+        $messages = validateName($name);
+        foreach($messageStrings as $message) {
+            $this->assertContains($messages, (string)$message);
+        }
     }
 
 
