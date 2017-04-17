@@ -12,8 +12,8 @@ function validateName( $request, $response) {
     $allPostPutVars = $request->getParsedBody();
     $name = $allPostPutVars['name'];
 
-    if (sizeof($name) <= 5) {
+//    if (sizeof($name) <= 5) {
         $message = "Too short";
         return $response->withStatus(302)->withHeader('Location', '/namedrop/' . urlencode($message));
-    }
+//    }
 };
