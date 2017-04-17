@@ -36,21 +36,20 @@ $app->get('/namedrop/[{message}]', function ($request, $response, $args) {
 $app->post('/new/', function ($request, $response, $args) {
     $this->logger->info("namedrop '/new' route");
 
+    // Get new value to add
     $allPostPutVars = $request->getParsedBody();
     $name = $allPostPutVars['name'];
 
+    // Validate input
     if ($message = (validateName($name))) {
         return $response->withStatus(302)->withHeader('Location', '/namedrop/' . urlencode($message));
     } else {
-        if (!isset($name)) {
-            $message = "Sorry, unable to help.";
-        } else {
-            // Save to db
-            $p = new People();
-            $p->setName($name);
-            $p->save();
-            $message = "$name has been added";
-        }
+        // Save to db
+        $p = new People();
+        $p->setName($name);
+        $p->save();
+        $message = "$name has been added";
+
         return $response->withStatus(302)->withHeader('Location', '/namedrop/' . urlencode($message));
     }
 });

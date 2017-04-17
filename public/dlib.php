@@ -1,7 +1,7 @@
 <?php
 
 function delButton($link, $text) {
-    return "[<a href='$link' title='$text'><span style='color:red; text-decoration:none; text-effect:none;'>&nbsp;x&nbsp;</span></a>]";
+    return "[<a href='$link' style='text-decoration:none;' title='$text'><span style='font-weight:bold;color:red;text-effect:none;'>&nbsp;X&nbsp;</span></a>]";
 }
 
 function prerender($item) {
@@ -9,9 +9,23 @@ function prerender($item) {
 }
 
 function validateName( $name ) {
-    $message = "";
-    if (strlen($name) < 3) {
-        $message = "Too short: '$name'";
+    $messages = [];
+
+    if (sizeof($name) == 0) {
+        $messages[] = "Name was not submitted.";
     }
-    return $message;
+
+    if (strlen($name) < 2) {
+        $message[] = "Too short: '$name'.";
+    }
+
+    if (strlen($name) >= 15) {
+        $message[] = "Too long: '$name'.";
+    }
+
+    if( 1 !== preg_match('~[0-9]~', $name)) {
+        $message[] = "Name may not contain numbers: '$name'.";
+    }
+
+    return join(" ", $message);
 };
