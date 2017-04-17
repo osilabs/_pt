@@ -5,14 +5,15 @@
 
 
 
-$authenticateName = function ( $name = '' ) {
-    return function () use ( $name ) {
+$authenticateName = function ( $request, $response, $args ) {
+    return function () use ( $request, $response, $args ) {
+
+        $allPostPutVars = $request->getParsedBody();
+        $name = $allPostPutVars['name'];
 
         if (sizeof($name) <= 2) {
             $message = "Too short";
-            $app = \Slim\Slim::getInstance();
-            $app->redirect('/namedrop/' . urlencode($message));
-            //return $response->withStatus(302)->withHeader('Location', '/namedrop/' . urlencode($message));
+            return $response->withStatus(302)->withHeader('Location', '/namedrop/' . urlencode($message));
         }
     };
 };
