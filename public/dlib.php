@@ -24,7 +24,7 @@ function validateName( $name ) {
     if (strlen($name) < 3) {
         $messages[] = "Too short: '$name'";
     }
-    if (strlen($name) >= 15) {
+    if (strlen($name) > 15) {
         $messages[] = "Too long: '$name'";
     }
     if( 1 === preg_match('/[0-9]/', $name)) {
