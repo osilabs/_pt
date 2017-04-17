@@ -16,16 +16,20 @@ function validateName( $name ) {
     }
 
     if (strlen($name) < 2) {
-        $message[] = "Too short: '$name'.";
+        $messages[] = "Too short: '$name'.";
     }
 
     if (strlen($name) >= 15) {
-        $message[] = "Too long: '$name'.";
+        $messages[] = "Too long: '$name'.";
     }
 
     if( 1 === preg_match('/[0-9]/', $name)) {
-        $message[] = "Name may not contain numbers: '$name'.";
+        $messages[] = "Name may not contain numbers: '$name'.";
     }
 
-    return join(" ", $message) . "/";
+    if (count($messages)) {
+        return join(" ", $messages) . "/";
+    } else {
+        return "";
+    }
 };
