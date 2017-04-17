@@ -5,7 +5,7 @@
 
 
 
-$authenticateName = function ( $request, $response, $args ) {
+function validateName( $request, $response, $args ) {
     return function () use ( $request, $response, $args ) {
 
         $allPostPutVars = $request->getParsedBody();
@@ -17,9 +17,3 @@ $authenticateName = function ( $request, $response, $args ) {
         }
     };
 };
-
-
-function validateName($name) {
-
-
-}
