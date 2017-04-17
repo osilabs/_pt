@@ -18,7 +18,7 @@ function validateName( $name ) {
     $messages = [];
 
     // Check min, max length. Assert no numbers.
-    if (sizeof($name) == 0) {
+    if (empty($name)) {
         $messages[] = "Name was not submitted";
     }
     if (strlen($name) < 3) {

@@ -47,10 +47,6 @@ class HomepageTest extends BaseTestCase
             ["()_+=-`", []],
             ["[]\\;',./'", []],
             ["{}|:\"<>?", []],
-            ["", []],
-            ["", []],
-            ["", []],
-            ["", []],
         ];
     }
     /**
@@ -63,9 +59,10 @@ class HomepageTest extends BaseTestCase
         $messages = validateName($name);
         if (count($messageStrings) == 0) {
             $this->assertEmpty($messages);
-        }
-        foreach($messageStrings as $message) {
-            $this->assertContains($message, $messages);
+        } else {
+            foreach($messageStrings as $message) {
+                $this->assertContains($message, $messages);
+            }
         }
     }
 
