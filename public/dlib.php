@@ -28,7 +28,7 @@ function validateName( $name ) {
     }
 
     if (count($messages)) {
-        return join(" ", $messages);
+        return urlencode( join(" ", $messages) );
     } else {
         return "";
     }
