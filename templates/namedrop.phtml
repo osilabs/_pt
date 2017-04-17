@@ -9,9 +9,11 @@
 <h1>Welcome to NameDrop</h1>
 <div>A study in CRUD, Git, unit testing, and separation of service</div>
 
-<?php if (isset($message)) : ?>
-<h3 id="message" style="visibility:visible"><?= htmlspecialchars($message); ?>!</h3>
-<?php endif; ?>
+<h3>
+    <?php if (isset($message)) : ?>
+        <div id="message" style="visibility:visible"><?= htmlspecialchars($message); ?>!</div>
+    <?php endif; ?>
+</h3>
 
 <div align="center">
     <div align="left" style="width: 34%;">
