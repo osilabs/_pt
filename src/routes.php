@@ -36,12 +36,12 @@ $app->get('/namedrop/[{message}]', function ($request, $response, $args) {
 $app->post('/new/', function ($request, $response, $args) {
     $this->logger->info("namedrop '/new' route");
 
-    if ($message = (validateName($request, $response))) {
-        return $response->withStatus(302)->withHeader('Location', '/namedrop/' . urlencode($message));
-    }
-
     $allPostPutVars = $request->getParsedBody();
     $name = $allPostPutVars['name'];
+
+    if ($message = (validateName($name))) {
+        return $response->withStatus(302)->withHeader('Location', '/namedrop/' . urlencode($message));
+    }
 
     if (!isset($name)) {
         $message="Sorry, unable to help.";
