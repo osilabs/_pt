@@ -3,13 +3,13 @@
 
 // e.g: $app->add(new \Slim\Csrf\Guard);
 
-
-
 function validateName( $request, $response, $args ) {
     return function () use ( $request, $response, $args ) {
 
         $allPostPutVars = $request->getParsedBody();
         $name = $allPostPutVars['name'];
+
+        print $name;
 
         if (sizeof($name) <= 2) {
             $message = "Too short";

@@ -43,8 +43,6 @@ $app->post('/new/', function ($request, $response, $args) {
 
     if (!isset($name)) {
         $message="Sorry, unable to help.";
-    } else if ( $name == "Damien" ) {
-        $message="Nope, can not add Damien.";
     } else {
         $p = new People();
         $p->setName($name);
