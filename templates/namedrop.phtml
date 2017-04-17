@@ -31,17 +31,18 @@
         }
     </style>
 </head>
-<body onload="setTimeout(function() {document.getElementById('message').style.visibility='hidden';}, 3000);">
+<body onload="setTimeout(function() {
+    el = document.getElementById('message');
+    el.style.visibility='hidden';
+    el.style.display='block';
+}, 3000);">
 
 <h1>Welcome to NameDrop</h1>
 <div>A study in CRUD, Git, unit testing, and separation of service</div>
 
 <?php if (isset($message)) : ?>
-<h3 id="message" style="visibility: visible;"><?= htmlspecialchars($message); ?>!</h3>
+<h3 id="message" style="visibility:visible"><?= htmlspecialchars($message); ?>!</h3>
 <?php endif; ?>
-
-<p></p>
-<p></p>
 
 <div align="center">
     <div align="left" style="width: 34%;">
@@ -62,7 +63,6 @@
     <button type="submit">Do it</button>
 </form>
 
-<p>Looking for more? <a href="https://therapists.psychologytoday.com">Find a Therapist</a>
 
 </body>
 </html>
