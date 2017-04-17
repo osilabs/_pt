@@ -36,7 +36,7 @@ $app->get('/namedrop/[{message}]', function ($request, $response, $args) {
 $app->post('/new/', function ($request, $response, $args) {
     $this->logger->info("namedrop '/new' route");
 
-    validateName($request, $response, $args);
+    validateName($request, $response);
 
     $allPostPutVars = $request->getParsedBody();
     $name = $allPostPutVars['name'];
