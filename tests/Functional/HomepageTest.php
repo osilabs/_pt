@@ -29,8 +29,9 @@ class HomepageTest extends BaseTestCase
     public function nameValidateProvider()
     {
         return [
-            ["Damien", ["Success"]],
-            ["Vu", ["Short"]],
+            ["Damien", []],
+            ["Vu", ["short"]],
+            ["This is a long name", ["long"]]
         ];
     }
     /**
@@ -39,8 +40,11 @@ class HomepageTest extends BaseTestCase
     public function testValidation($name, $messageStrings)
     {
         $messages = validateName($name);
+        if (count($messageStrings) == 0) {
+            $this->assertEmpty($messages);
+        }
         foreach($messageStrings as $message) {
-            $this->assertContains($messages, (string)$message);
+            $this->assertContains($message, $messages);
         }
     }
 
