@@ -20,6 +20,15 @@ class HomepageTest extends BaseTestCase
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertContains('Welcome', (string)$response->getBody());
     }
+
+    public function testValidation()
+    {
+        $message = validateName('Donkey Face meets chinchilla');
+        $this->assertContains('long', (string)$message);
+    }
+
+
+
     // ------------------------------------------------------------------------
 
     /**
