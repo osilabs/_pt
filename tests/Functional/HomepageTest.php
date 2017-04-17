@@ -2,6 +2,8 @@
 
 namespace Tests\Functional;
 
+require __DIR__ . '/dlib.php';
+
 class HomepageTest extends BaseTestCase
 {
 
