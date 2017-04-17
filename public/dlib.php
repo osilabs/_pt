@@ -23,7 +23,7 @@ function validateName( $name ) {
         $message[] = "Too long: '$name'.";
     }
 
-    if( 1 === preg_match('/[0-9]/g', $name)) {
+    if( 1 === preg_match('/[0-9]/', $name)) {
         $message[] = "Name may not contain numbers: '$name'.";
     }
 
