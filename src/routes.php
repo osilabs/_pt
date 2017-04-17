@@ -15,7 +15,7 @@ $app->get('/', function ($request, $response, $args) {
 /**
  * Primary Interface. Interact with system.
  */
-$app->get('/namedrop/[{message}]', function ($request, $response, $args) {
+$app->get('/namedrop/[{message}/]', function ($request, $response, $args) {
     $people = PeopleQuery::create()
         ->addDescendingOrderByColumn('length(name)')
         ->find();
