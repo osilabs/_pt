@@ -6,38 +6,59 @@ require __DIR__ . '/../../../namedrop/public/dlib.php';
 
 class HomepageTest extends BaseTestCase
 {
+    public function testCreateName()
+    {
+        $response = $this->runApp('post', '/new/?name=foo');
 
-    // ------------------------------------------------------------------------
-//    public function testCreateName()
-//    {
-//        $response = $this->runApp('post', '/new/?name=foo');
-//
-//        $this->assertEquals(302, $response->getStatusCode());
-//    }
-//
-//    public function testRead()
-//    {
-//        $response = $this->runApp('get', '/namedrop/');
-//
-//        $this->assertEquals(200, $response->getStatusCode());
-//        $this->assertContains('Welcome', (string)$response->getBody());
-//    }
+        $this->assertEquals(302, $response->getStatusCode());
+    }
+
+    public function testRead()
+    {
+        $response = $this->runApp('get', '/namedrop/');
+
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertContains('Welcome', (string)$response->getBody());
+    }
 
 
-
-
+    /**
+     * Data provider for name validator
+     * @return array
+     */
     public function nameValidateProvider()
     {
         return [
-            ["Damien", []],
-            ["Vu", ["short"]],
-            ["This is a long name", ["long"]]
+            // Edge cases - length
+            ["", ["was not submitted"]],
+            ["D", ["short"]],
+            ["Da", ["short"]],
+            ["Dam", []],
+            ["Daaaaaaaaaamien", []], // length 15
+            ["Daaaaaaaaaaamien", ["long"]], // length 16
+            // Multiple errors
+            ["1x", ["short", "number"]],
+            ["1xxxxxxxxxxxxxxx", ["long", "number"]],
+            ["x111111111111111", ["long", "number"]],
+            // Tricky characters
+            ["'''", []],
+            ['"""', []],
+            ["~!@#$%^&*", []],
+            ["()_+=-`", []],
+            ["[]\\;',./'", []],
+            ["{}|:\"<>?", []],
+            ["", []],
+            ["", []],
+            ["", []],
+            ["", []],
         ];
     }
     /**
      * @dataProvider nameValidateProvider
+     * @param $name Sample name string to test
+     * @param $messageStrings String[] Strings expected in returned messages
      */
-    public function testValidation($name, $messageStrings)
+    public function testNameValidation($name, $messageStrings)
     {
         $messages = validateName($name);
         if (count($messageStrings) == 0) {
@@ -75,14 +96,14 @@ class HomepageTest extends BaseTestCase
 //        $this->assertContains('Hello name!', (string)$response->getBody());
 //    }
 //
-//    /**
-//     * Test that the index route won't accept a post request
-//     */
-//    public function testPostHomepageNotAllowed()
-//    {
-//        $response = $this->runApp('POST', '/', ['test']);
-//
-//        $this->assertEquals(405, $response->getStatusCode());
-//        $this->assertContains('Method not allowed', (string)$response->getBody());
-//    }
+    /**
+     * Test that the index route won't accept a post request
+     */
+    public function testPostHomepageNotAllowed()
+    {
+        $response = $this->runApp('POST', '/', ['test']);
+
+        $this->assertEquals(405, $response->getStatusCode());
+        $this->assertContains('Method not allowed', (string)$response->getBody());
+    }
 }
