@@ -8,20 +8,20 @@ class HomepageTest extends BaseTestCase
 {
 
     // ------------------------------------------------------------------------
-    public function testCreateName()
-    {
-        $response = $this->runApp('post', '/new/?name=foo');
-
-        $this->assertEquals(302, $response->getStatusCode());
-    }
-
-    public function testRead()
-    {
-        $response = $this->runApp('get', '/namedrop/');
-
-        $this->assertEquals(200, $response->getStatusCode());
-        $this->assertContains('Welcome', (string)$response->getBody());
-    }
+//    public function testCreateName()
+//    {
+//        $response = $this->runApp('post', '/new/?name=foo');
+//
+//        $this->assertEquals(302, $response->getStatusCode());
+//    }
+//
+//    public function testRead()
+//    {
+//        $response = $this->runApp('get', '/namedrop/');
+//
+//        $this->assertEquals(200, $response->getStatusCode());
+//        $this->assertContains('Welcome', (string)$response->getBody());
+//    }
 
     public function testValidation()
     {
