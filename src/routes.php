@@ -42,7 +42,7 @@ $app->post('/new/', function ($request, $response, $args) {
 
     // Validate input
     if ($message = (validateName($name))) {
-        return $response->withStatus(302)->withHeader('Location', '/namedrop/' . urlencode($message));
+        return $response->withStatus(302)->withHeader('Location', '/namedrop/' . urlencode($message) . "/");
     } else {
         // Save to db
         $p = new People();
@@ -50,7 +50,7 @@ $app->post('/new/', function ($request, $response, $args) {
         $p->save();
         $message = "$name has been added";
 
-        return $response->withStatus(302)->withHeader('Location', '/namedrop/' . urlencode($message));
+        return $response->withStatus(302)->withHeader('Location', '/namedrop/' . urlencode($message) . "/");
     }
 });
 
